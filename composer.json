@@ -1,0 +1,32 @@
+{
+    "name": "oscarotero/php-cs-fixer-config",
+    "type": "library",
+    "description": "My own custom php-cs-fixer config",
+    "keywords": ["php", "code-style", "config"],
+    "homepage": "https://github.com/oscarotero/php-cs-fixer-config",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Oscar Otero",
+            "email": "oom@oscarotero.com",
+            "homepage": "http://oscarotero.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "oom@oscarotero.com",
+        "issues": "https://github.com/oscarotero/php-cs-fixer-config/issues"
+    },
+    "require": {
+        "php": "^7.2",
+        "friendsofphp/php-cs-fixer": "^2.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "My\\": "src"
+        }
+    },
+    "scripts": {
+        "cs-fix": "php-cs-fixer fix"
+    }
+}
