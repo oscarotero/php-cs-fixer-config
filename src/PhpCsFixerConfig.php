@@ -2,10 +2,39 @@
 namespace My;
 
 use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 
 abstract class PhpCsFixerConfig
 {
-    public static function create(): Config
+    public static function create(string ...$paths): Config
+    {
+        $config = self::createConfig();
+
+        if (empty($paths)) {
+            return $config;
+        }
+
+        return $config->setFinder(self::createFinder(...$paths));
+    }
+
+    private static function createFinder(string ...$paths): Finder
+    {
+        $finder = Finder::create()
+            ->files()
+            ->name('*.php');
+
+        foreach ($paths as $path) {
+            if (substr($path, 0, 1) === '!') {
+                $finder->exclude(substr($path, 1));
+            } else {
+                $finder->in($path);
+            }
+        }
+
+        return $finder;
+    }
+
+    private static function createConfig(): Config
     {
         return Config::create()
             ->setRules([

@@ -9,11 +9,9 @@ Create a `.php_cs.dist` file with the following code:
 ```php
 <?php
 
-return My\PhpCsFixerConfig::create()
-    ->setFinder(
-        PhpCsFixer\Finder::create()
-            ->files()
-            ->name('*.php')
-            ->in(__DIR__.'/src')
-    );
+return My\PhpCsFixerConfig::create(
+    __DIR__.'/src',
+    __DIR__.'/tests',
+    '!ignored',
+);
 ```
