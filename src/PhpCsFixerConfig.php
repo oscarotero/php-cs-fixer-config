@@ -36,29 +36,38 @@ abstract class PhpCsFixerConfig
 
     private static function createConfig(): Config
     {
-        return Config::create()
-            ->setRules([
+        return (new Config())->setRules([
                 '@PSR2' => true,
                 'array_syntax' => ['syntax' => 'short'],
-                'binary_operator_spaces' => ['align_double_arrow' => false, 'align_equals' => false],
                 'blank_line_after_namespace' => true,
                 'blank_line_after_opening_tag' => false,
-                'blank_line_before_return' => false,
-                'braces' => ['allow_single_line_closure' => false],
+                'blank_line_before_statement' => [
+                    'statements' => ['return'],
+                ],
+                'braces' => [
+                    'allow_single_line_closure' => false,
+                ],
                 'cast_spaces' => true,
-                'class_definition' => ['singleLine' => false, 'singleItemSingleLine' => true, 'multiLineExtendsEachSingleLine' => true],
+                'class_definition' => [
+                    'single_line' => false,
+                    'single_item_single_line' => true,
+                    'multi_line_extends_each_single_line' => true,
+                ],
                 'class_keyword_remove' => false,
                 'combine_consecutive_unsets' => true,
                 'concat_space' => false,
-                'declare_equal_normalize' => ['space' => 'single'],
+                'declare_equal_normalize' => [
+                    'space' => 'single',
+                ],
                 'declare_strict_types' => false,
                 'elseif' => true,
                 'encoding' => true,
                 'full_opening_tag' => true,
                 'function_declaration' => true,
                 'function_typehint_space' => true,
-                'general_phpdoc_annotation_remove' => ['expectedExceptionMessageRegExp', 'expectedException', 'expectedExceptionMessage'],
-                'hash_to_slash_comment' => true,
+                'single_line_comment_style' => [
+                    'comment_types' => ['hash'],
+                ],
                 'header_comment' => false,
                 'heredoc_to_nowdoc' => true,
                 'include' => true,
@@ -66,11 +75,15 @@ abstract class PhpCsFixerConfig
                 'line_ending' => true,
                 'linebreak_after_opening_tag' => true,
                 'lowercase_cast' => true,
-                'lowercase_constants' => true,
+                'constant_case' => [
+                    'case' => 'lower',
+                ],
                 'lowercase_keywords' => true,
                 'mb_str_functions' => false,
                 'method_argument_space' => true,
-                'method_separation' => true,
+                'class_attributes_separation' => [
+                    'elements' => ['method' => 'one'],
+                ],
                 'native_function_casing' => true,
                 'native_function_invocation' => false,
                 'new_with_braces' => true,
@@ -81,12 +94,16 @@ abstract class PhpCsFixerConfig
                 'no_empty_comment' => true,
                 'no_empty_phpdoc' => true,
                 'no_empty_statement' => true,
-                'no_extra_consecutive_blank_lines' => ['break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'],
+                'no_extra_blank_lines' => [
+                    'tokens' => ['break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block'],
+                ],
                 'no_leading_import_slash' => true,
                 'no_leading_namespace_whitespace' => true,
-                'no_mixed_echo_print' => ['use' => 'echo'],
+                'no_mixed_echo_print' => [
+                    'use' => 'echo',
+                ],
                 'no_multiline_whitespace_around_double_arrow' => true,
-                'no_multiline_whitespace_before_semicolons' => true,
+                'multiline_whitespace_before_semicolons' => false,
                 'no_short_bool_cast' => true,
                 'no_singleline_whitespace_before_semicolons' => true,
                 'no_spaces_after_function_name' => true,
@@ -112,9 +129,10 @@ abstract class PhpCsFixerConfig
                 'php_unit_strict' => false,
                 'phpdoc_add_missing_param_annotation' => true,
                 'phpdoc_align' => true,
-                'phpdoc_inline_tag' => true,
                 'phpdoc_no_access' => true,
-                'phpdoc_no_alias_tag' => ['property-read' => 'property', 'property-write' => 'property', 'type' => 'var'],
+                'phpdoc_no_alias_tag' => [
+                    'replacements' => ['property-read' => 'property', 'property-write' => 'property', 'type' => 'var'],
+                ],
                 'phpdoc_no_empty_return' => true,
                 'phpdoc_no_package' => true,
                 'phpdoc_no_useless_inheritdoc' => true,
@@ -129,7 +147,9 @@ abstract class PhpCsFixerConfig
                 'phpdoc_types' => true,
                 'phpdoc_var_without_name' => true,
                 'pow_to_exponentiation' => false,
-                'pre_increment' => true,
+                'increment_style' => [
+                    'style' => 'pre',
+                ],
                 'protected_to_private' => true,
                 'return_type_declaration' => true,
                 'semicolon_after_instruction' => true,
@@ -147,7 +167,9 @@ abstract class PhpCsFixerConfig
                 'switch_case_space' => true,
                 'ternary_operator_spaces' => true,
                 'ternary_to_null_coalescing' => false,
-                'trailing_comma_in_multiline_array' => true,
+                'trailing_comma_in_multiline' => [
+                    'elements' => ['arrays'],
+                ],
                 'trim_array_spaces' => true,
                 'unary_operator_spaces' => true,
                 'visibility_required' => true,
